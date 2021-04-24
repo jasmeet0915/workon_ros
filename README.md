@@ -9,4 +9,8 @@ This script allows you to source setup.bash files for different ros distros in a
 * Add the above lines to the .bashrc scripts so they executed everytime a terminal is opened.
 * Execute the following command to source the setup file of that ros_distro or workspace: <code>workon_ros distro_name</code>
 
+# TO DO:
+* support for multiple ROS_WORKON_HOME paths for support of sourcing project workspaces as well.
+* deactive_ros function 
+* Tab Completion
 
