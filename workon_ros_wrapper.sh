@@ -11,7 +11,7 @@ function workon_ros {
 		echo "Sourced the setup for ROS $ws_name"
 		
 		# add distro name to prompt 
-		PS1="(`basename \"$ROS_DISTRO\"`) ${PS1-}"
+		PS1="($ROS_DISTRO) ${PS1}"
 	else
 		ws_path="$WORKON_ROS_HOME/$ws_name/install/setup.bash"
 
@@ -29,6 +29,6 @@ function workon_ros {
 		echo "Sourced the setup for Workspace $ws_name"
 
 		# add workspace + distro name to prompt
-		PS1="(`basename \"$ws_name-$ROS_DISTRO\"`) ${PS1-}"
+		PS1="($ws_name-$ROS_DISTRO) ${PS1}"
 	fi
 }
