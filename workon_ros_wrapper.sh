@@ -48,8 +48,9 @@ function workon_ros {
 		echo "Sourced the setup for Workspace $ws_name"
 
 		# add workspace + distro name to prompt
-		PS1="($ws_name-$ROS_DISTRO) ${PS1}"
+		PS1="($ws_name)\n($ROS_DISTRO) ${PS1}"
 	fi
 }
 
+# invoke tab completion function
 _workon_ros_completion
