@@ -9,8 +9,8 @@ This script allows you to source setup.bash files for different ros distros or w
 >Note: The script assumes that you have installed all your ROS distros in default `/opt/ros` path
 
 ## Usage Instructions
-* Add an environment variable named `ROS_WORKON_HOME` with the path containing workspaces to your `.bashrc` like this: 
- <br>`export ROS_WORKON_HOME=$HOME/ros_workspaces`
+* Add an environment variable named `WORKON_ROS_HOME` with the path containing workspaces to your `.bashrc` like this: 
+ <br>`export WORKON_ROS_HOME=$HOME/ros_workspaces`
 
 * To source the `workon_ros_script.sh` shell script everytime you open a terminal, add the following to your `.bashrc` 
 <br>`source /path/to/script/workon_ros_wrapper.sh`
@@ -20,7 +20,7 @@ This script allows you to source setup.bash files for different ros distros or w
 
 ## TO DO:
 - [x] Tab Completion
-- [ ] Add support for multiple `ROS_WORKON_HOME` paths.
+- [ ] Add support for multiple `WORKON_ROS_HOME` paths.
 - [ ] deactive_ros function 
 - [ ] Add `--change-directory` boolean option with workon_ros
 
