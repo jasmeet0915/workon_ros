@@ -1,9 +1,23 @@
 #! /bin/bash
 
 function get_workon_ros_options {
-	local workon_options=$(ls $WORKON_ROS_HOME && ls /opt/ros)	
+	local workon_ros_options=$(ls $WORKON_ROS_HOME && ls /opt/ros)	
 	echo "$workon_ros_options"
 }	
+
+function _workon_ros_completion {
+	local curr_word suggestions 
+
+	# COMP_WORDS is an array of words currently in command line
+	# COMP_CWORD is index of current word in COMP_WORDS
+	curr_word="${COMP_WORDS[COMP_CWORD]}"
+
+	suggestions=$(get_workon_ros_options)
+	COMPREPLY=( $(compgen -W "${suggestions}" -- ${curr_word}) )
+
+	# register this completion function for workon_ros command
+	complete -F _workon_ros_completion workon_ros
+}
 
 function workon_ros {
 	typeset ws_name=$1
