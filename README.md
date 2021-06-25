@@ -1,11 +1,10 @@
 ## WORKON_ROS
 
-This tool was inspired by [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) which makes activating and managing virtual environments very easy. 
-This script allows you to source setup.bash files for different ros distros or workspaces in a similar way and also displays the name of the current activated distro+workspace in the command prompt in parenthesis. (shown below)
+This tool was inspired by [virtualenvwrapper](https://virtualenvwrapper.readthedocs.io/en/latest/) which makes activating and managing virtual environments very easy.<br><br> 
+This script allows you to source setup.bash files for different ros distros or workspaces in a similar way and also displays the name of the current activated distro+workspace in the command prompt in parenthesis (as shown in gif below).
+<br>It works with both ROS1 and ROS2 workspaces!<br>
 
-<img src="https://user-images.githubusercontent.com/23265149/123334549-e629ae00-d560-11eb-952b-9b50163284fe.png" width=800 />
-<img src="https://user-images.githubusercontent.com/23265149/123334561-e75adb00-d560-11eb-93dd-1d78a9fdce46.png" width=400 />
-
+<img src="example.gif" width=600 />
 
 >Note: The script assumes that you have installed all your ROS distros in default `/opt/ros` path
 
@@ -20,7 +19,9 @@ This script allows you to source setup.bash files for different ros distros or w
 <br>`workon_ros distro_name/workspace_name`
 
 ## TO DO:
-* support for multiple ROS_WORKON_HOME paths.
-* deactive_ros function 
-* Tab Completion
+- [x] Tab Completion
+- [ ] Add support for multiple `ROS_WORKON_HOME` paths.
+- [ ] deactive_ros function 
+- [ ] Add `--change-directory` boolean option with workon_ros
+
 
