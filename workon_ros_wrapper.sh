@@ -1,5 +1,10 @@
 #! /bin/bash
 
+function get_workon_ros_options {
+	local workon_options=$(ls $WORKON_ROS_HOME && ls /opt/ros)	
+	echo "$workon_ros_options"
+}	
+
 function workon_ros {
 	typeset ws_name=$1
 
