@@ -51,3 +51,5 @@ function workon_ros {
 		PS1="($ws_name-$ROS_DISTRO) ${PS1}"
 	fi
 }
+
+_workon_ros_completion
