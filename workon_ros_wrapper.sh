@@ -32,20 +32,25 @@ function Help {
 }
 
 function workon_ros {
-	# decalre OPTIND locally so it resets everytime this function is called
+	# declare OPTIND locally so it resets everytime this function is called
 	local OPTIND
+	local change_directory=false
+	local ws_name=$1
+
 	# handle command line options
-	while getopts ch option
+	while getopts c:h option
 	do	
 		case "${option}" 
 		in
 			h) # display Help
 				Help
 				return 1;;
+			c) # set change directory to true
+				change_directory=true
+				ws_name=$OPTARG
+				;;
 		esac
 	done
-
-	typeset ws_name=$1
 
 	ros_install_path="/opt/ros/$ws_name/setup.bash"
 
@@ -71,6 +76,11 @@ function workon_ros {
 
 		source $ws_path
 		echo "Sourced the setup for Workspace $ws_name"
+
+		if [ $change_directory = true ]; then
+			echo "Changing current directory to workspace: ${ws_pat} since -c used"
+			cd $WORKON_ROS_HOME/$ws_name 
+		fi
 
 		# add workspace + distro name to prompt
 		PS1="($ws_name)\n($ROS_DISTRO) ${PS1}"
