@@ -26,12 +26,25 @@ function Help {
 	echo
 	echo "Syntax: workon_ros[-c|h] workspace_name"
 	echo "options:"
-	echo "g     Also change the directory to workspace in the current shell."
+	echo "c     Also change the directory to workspace in the current shell."
 	echo "h     Print this Help."
 	echo
 }
 
 function workon_ros {
+	# decalre OPTIND locally so it resets everytime this function is called
+	local OPTIND
+	# handle command line options
+	while getopts ch option
+	do	
+		case "${option}" 
+		in
+			h) # display Help
+				Help
+				return 1;;
+		esac
+	done
+
 	typeset ws_name=$1
 
 	ros_install_path="/opt/ros/$ws_name/setup.bash"
