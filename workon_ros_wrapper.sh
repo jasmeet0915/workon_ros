@@ -19,6 +19,18 @@ function _workon_ros_completion {
 	complete -F _workon_ros_completion workon_ros
 }
 
+function Help {
+	# Display Help
+	echo "Use workon_ros to easily switch between ROS workspaces to speed up your workflow."
+	echo "Set the WORKON_ROS_HOME environment variable to the path where all your workspaces reside."
+	echo
+	echo "Syntax: workon_ros[-c|h] workspace_name"
+	echo "options:"
+	echo "g     Also change the directory to workspace in the current shell."
+	echo "h     Print this Help."
+	echo
+}
+
 function workon_ros {
 	typeset ws_name=$1
 
