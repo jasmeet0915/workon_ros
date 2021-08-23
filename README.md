@@ -20,6 +20,7 @@ This script allows you to source setup.bash files for different ros distros or w
 
 ## TO DO:
 - [x] Tab Completion
+- [x] Add help function and -h option
 - [ ] Add support for multiple `WORKON_ROS_HOME` paths.
 - [ ] deactive_ros function 
 - [ ] Add `--change-directory` boolean option with workon_ros
