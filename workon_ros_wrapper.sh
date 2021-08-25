@@ -52,11 +52,11 @@ function workon_ros {
 		esac
 	done
 
-	ros_install_path="/opt/ros/$ws_name/setup.bash"
+	local ws_path="/opt/ros/$ws_name/setup.bash"
 
-	if [ -f "$ros_install_path" ]
+	if [ -f "$ws_path" ]
 	then
-		source $ros_install_path
+		source $ws_path
 		echo "Sourced the setup for ROS $ws_name"
 		
 		# add distro name to prompt 
@@ -77,13 +77,14 @@ function workon_ros {
 		source $ws_path
 		echo "Sourced the setup for Workspace $ws_name"
 
-		if [ $change_directory = true ]; then
-			echo "Changing current directory to workspace: ${ws_pat} since -c used"
-			cd $WORKON_ROS_HOME/$ws_name 
-		fi
-
 		# add workspace + distro name to prompt
 		PS1="($ws_name)\n($ROS_DISTRO) ${PS1}"
+	fi
+
+	if [ $change_directory = true ]; then
+		echo "Changing current directory to workspace: ${ws_path} since -c used"
+		# remove everything after the ws_name from the path & append the ws_name again
+		cd ${ws_path%$ws_name*}$ws_name 
 	fi
 }
 
