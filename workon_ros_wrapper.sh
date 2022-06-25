@@ -1,5 +1,8 @@
 #! /bin/bash
 
+# Copyright (C) 2021 Jasmeet Singh - All Rights Reserved
+# You may use, distribute and modify this code as per your requirement
+
 function get_workon_ros_options {
 	local workon_ros_options=$(ls $WORKON_ROS_HOME && ls /opt/ros)	
 	echo "$workon_ros_options"
