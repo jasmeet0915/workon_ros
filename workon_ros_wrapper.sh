@@ -1,5 +1,3 @@
-#! /bin/bash
-
 # Copyright (C) 2021 Jasmeet Singh - All Rights Reserved
 # You may use, distribute and modify this code as per your requirement
 
@@ -57,31 +55,38 @@ function workon_ros {
 
 	local ws_path="/opt/ros/$ws_name/setup.bash"
 
-	if [ -f "$ws_path" ]
+	if [ ! -f "$ws_path" ]
 	then
-		source $ws_path
-		echo "Sourced the setup for ROS $ws_name"
-		
-		# add distro name to prompt 
-		PS1="($ROS_DISTRO) ${PS1}"
-	else
 		ws_path="$WORKON_ROS_HOME/$ws_name/install/setup.bash"
 
 		if [ ! -f "$ws_path" ]
 		then
 			ws_path="$WORKON_ROS_HOME/$ws_name/devel/setup.bash"
+
 			if [ ! -f "$ws_path" ]
 			then
 				echo "$ws_name: No such workspace exists"
 				return 1
 			fi
 		fi
+	fi
 
-		source $ws_path
-		echo "Sourced the setup for Workspace $ws_name"
+	# check if the current shell is zsh & change the setup extension accordingly
+	if [ -n "$ZSH_VERSION" ]
+	then
+		ws_path=$(sed 's/.bash/.zsh/g' <<< $ws_path)
+	fi
 
-		# add workspace + distro name to prompt
-		PS1="($ws_name)\n($ROS_DISTRO) ${PS1}"
+	source $ws_path
+	echo "Sourced the setup for $ws_name"
+	
+	local NEWLINE=$'\n'
+
+	if [ "$ws_name" = "$ROS_DISTRO" ]
+	then
+		PS1="($ROS_DISTRO) ${PS1}"
+	else
+		PS1="($ws_name)${NEWLINE}($ROS_DISTRO) ${PS1}"
 	fi
 
 	if [ $change_directory = true ]; then
