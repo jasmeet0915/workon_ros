@@ -79,6 +79,13 @@ function workon_ros {
 
 	source $ws_path
 	echo "Sourced the setup for $ws_name"
+
+	if [ -n "$ZSH_VERSION" ]
+	then
+		# argcomplete for ros2 & colcon
+		eval "$(register-python-argcomplete3 ros2)"
+		eval "$(register-python-argcomplete3 colcon)"
+	fi
 	
 	local NEWLINE=$'\n'
 
